@@ -147,7 +147,7 @@ const ProductDisplay = ({ searchKeyWord }) => {
       searchProducts.filter((product) => {
         if (searchKeyWord === "") {
           return product
-        } else if (product.title.includes(searchKeyWord) || product.description.includes(searchKeyWord) || product.price.includes(searchKeyWord)) {
+        } else if (product.title.includes(searchKeyWord) || product.description.includes(searchKeyWord) || product.price.toString().includes(searchKeyWord)) {
           return product
         }
       })

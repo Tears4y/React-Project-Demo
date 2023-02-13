@@ -46,8 +46,8 @@ const EditProduct = ({ products, setProducts, product, setEditProductId, editFor
     image && formData.append('product_image', image)
     formData.append('_method', 'put')
 
-    // apiPost(`product/${editFormData.id}`, formData)
-    apiPut(`product/${editFormData.id}`, formData)
+    apiPost(`product/${editFormData.id}`, formData)
+      // apiPut(`product/${editFormData.id}`, formData)
       // axios.post(`https://app.spiritx.co.nz/api/product/${editFormData.id}`, formData)
       .then((res) => {
         const newData = [...products]
