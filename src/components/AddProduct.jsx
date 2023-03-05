@@ -8,6 +8,7 @@ import { apiPost } from "../service"
 
 const AddProduct = ({ products, setProducts, setAddedSwitch }) => {
 
+  const [urls, setUrls] = useState([]);
   const [image, setImage] = useState("")
   const [addUrl, setAddUrl] = useState("")
   const [addFormData, setAddFormData] = useState({
@@ -15,7 +16,6 @@ const AddProduct = ({ products, setProducts, setAddedSwitch }) => {
     description: "",
     price: ""
   })
-
 
   const handleAddFormChange = (e) => {
     e.preventDefault()
@@ -31,13 +31,19 @@ const AddProduct = ({ products, setProducts, setAddedSwitch }) => {
   const addImg = (e) => {
     let imgFile = e.target.files[0]
     let url = window.URL.createObjectURL(imgFile)
+    setImage(imgFile)
     setAddUrl(url)
-    handleImage(imgFile)
-  }
 
-  const handleImage = (file) => {
-    // console.log('imageFile', file)
-    setImage(file)
+    // /* 多选图片 */
+    // let fileList = e.target.files
+    // let newUrls = []
+
+    // for (let i = 0; i < fileList.length; i++) {
+    //   let file = fileList[i];
+    //   let url = window.URL.createObjectURL(file)
+    //   newUrls.push(url)
+    // }
+    // setUrls(newUrls)
   }
 
   const handleAddSubmit = () => {
@@ -49,6 +55,7 @@ const AddProduct = ({ products, setProducts, setAddedSwitch }) => {
     }
 
     const formData = new FormData()
+    formData.append('category_id', '99')
     formData.append('title', addFormData.title)
     formData.append('description', addFormData.description)
     formData.append('price', addFormData.price)
@@ -87,6 +94,11 @@ const AddProduct = ({ products, setProducts, setAddedSwitch }) => {
                 <img src={addUrl} width="100" height="80" />
               ) : ("")
             }
+            {/* {//多选图片 input需要multiple属性
+              urls.map((url, index) => (
+                <img key={index} src={url} width="100" height="80" />
+              ))
+            } */}
             <input hidden accept="image/*" type="file" name="product_image" onChange={addImg} />
             <DriveFolderUpload fontSize="large" />
           </IconButton>

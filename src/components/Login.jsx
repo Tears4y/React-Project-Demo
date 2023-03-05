@@ -29,7 +29,8 @@ const Login = () => {
     apiPost("login", inputs)
       // axios.post("https://app.spiritx.co.nz/api/login", inputs)
       .then(res => {
-        localStorage.setItem("react-demo-token", res.data.token)
+        // localStorage.setItem("react-demo-token", res.data.token)
+        localStorage.setItem("react-demo-token", res.data.token.token)
         localStorage.setItem('react-demo-user', JSON.stringify(res.data.user))
 
         setTimeout(window.location.reload(), 2000)

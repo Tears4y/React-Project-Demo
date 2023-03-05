@@ -9,14 +9,14 @@ export const setupInterceptor = (axiosInstance) => {
 const onRequest = (config) => {
   const userToken = localStorage.getItem("react-demo-token")
   if (!config.url?.includes("login")) {
-    // const newConfig = { ...config, headers: { ...config.headers, "token": userToken } }
-    const newConfig = {
-      ...config,
-      headers: {
-        ...config.headers,
-        'Authorization': 'Bearer ' + userToken
-      }
-    }
+    const newConfig = { ...config, headers: { ...config.headers, "token": userToken } }
+    // const newConfig = {
+    //   ...config,
+    //   headers: {
+    //     ...config.headers,
+    //     'Authorization': 'Bearer ' + userToken
+    //   }
+    // }
     return newConfig
   }
   return config
